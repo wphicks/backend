@@ -193,12 +193,7 @@ BackendInputCollector::GetInputBufferIfContiguous(
         *buffer_byte_size = src_byte_size;
         expected_next_buffer = *buffer + src_byte_size;
       }
-      auto debug = reinterpret_cast<float const*>(src_buffer);
-      for (auto whi = size_t{}; whi < 1; ++whi) {
-        if (debug[whi] < 0.5 || debug[whi] > 1.5) {
-          LOG_MESSAGE(TRITONSERVER_LOG_INFO, "WHOOPSIE!");
-        }
-      }
+      LOG_MESSAGE(TRITONSERVER_LOG_INFO, buffer);
     }
   }
   return contiguous;
