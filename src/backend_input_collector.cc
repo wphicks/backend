@@ -193,7 +193,9 @@ BackendInputCollector::GetInputBufferIfContiguous(
         *buffer_byte_size = src_byte_size;
         expected_next_buffer = *buffer + src_byte_size;
       }
-      LOG_MESSAGE(TRITONSERVER_LOG_INFO, "WH");
+      if (((float)((*buffer)[0])) != 1.0f) {
+        LOG_MESSAGE(TRITONSERVER_LOG_INFO, "WH");
+      }
     }
   }
   return contiguous;
