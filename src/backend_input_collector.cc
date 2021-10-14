@@ -177,8 +177,7 @@ BackendInputCollector::GetInputBufferIfContiguous(
       auto debug = reinterpret_cast<float const*>(src_buffer);
       for (auto whi = size_t{}; whi < src_byte_size / sizeof(float); ++whi) {
         if (debug[whi] < 0.5 || debug[whi] > 1.5) {
-          LOG_MESSAGE(
-              TRITONSERVER_LOG_INFO, std::to_string(debug[whi]).c_str());
+          LOG_MESSAGE(TRITONSERVER_LOG_INFO, "WHOOPSIE!");
         }
       }
       if (*buffer != nullptr) {
