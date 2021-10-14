@@ -194,7 +194,7 @@ BackendInputCollector::GetInputBufferIfContiguous(
         expected_next_buffer = *buffer + src_byte_size;
       }
       LOG_MESSAGE(
-          TRITONSERVER_LOG_INFO, std::to_string((float)(*buffer)[0]).c_str());
+          TRITONSERVER_LOG_INFO, std::to_string((float)((*buffer)[0])).c_str());
     }
   }
   return contiguous;
