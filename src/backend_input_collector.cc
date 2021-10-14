@@ -27,6 +27,8 @@
 #include "triton/backend/backend_input_collector.h"
 
 #include <atomic>
+#include <string>
+
 #include "triton/backend/backend_common.h"
 #ifdef TRITON_ENABLE_GPU
 #include "kernel.h"
@@ -171,6 +173,14 @@ BackendInputCollector::GetInputBufferIfContiguous(
           TRITONBACKEND_InputBufferForHostPolicy(
               input, host_policy_cstr_, idx, &src_buffer, &src_byte_size,
               &src_memory_type, &src_memory_type_id));
+
+      auto debug = reinterpret_cast<float const*>(src_buffer);
+      for (auto whi = size_t{}; whi < src_byte_size / sizeof(float); ++whi) {
+        if (debug[whi] < 0.5 || debug[whi] > 1.5) {
+          LOG_MESSAGE(
+              TRITONSERVER_LOG_INFO, std::to_string(debug[whi]).c_str());
+        }
+      }
       if (*buffer != nullptr) {
         // If have seen the second buffer while coalescing input is not
         // requested, treat the inputs are not contiguous
