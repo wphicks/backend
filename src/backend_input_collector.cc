@@ -174,12 +174,6 @@ BackendInputCollector::GetInputBufferIfContiguous(
               input, host_policy_cstr_, idx, &src_buffer, &src_byte_size,
               &src_memory_type, &src_memory_type_id));
 
-      auto debug = reinterpret_cast<float const*>(src_buffer);
-      for (auto whi = size_t{}; whi < src_byte_size / sizeof(float); ++whi) {
-        if (debug[whi] < 0.5 || debug[whi] > 1.5) {
-          LOG_MESSAGE(TRITONSERVER_LOG_INFO, "WHOOPSIE!");
-        }
-      }
       if (*buffer != nullptr) {
         // If have seen the second buffer while coalescing input is not
         // requested, treat the inputs are not contiguous
@@ -198,6 +192,12 @@ BackendInputCollector::GetInputBufferIfContiguous(
         *memory_type_id = src_memory_type_id;
         *buffer_byte_size = src_byte_size;
         expected_next_buffer = *buffer + src_byte_size;
+      }
+      auto debug = reinterpret_cast<float const*>(src_buffer);
+      for (auto whi = size_t{}; whi < 1; ++whi) {
+        if (debug[whi] < 0.5 || debug[whi] > 1.5) {
+          LOG_MESSAGE(TRITONSERVER_LOG_INFO, "WHOOPSIE!");
+        }
       }
     }
   }
