@@ -433,7 +433,7 @@ BackendInputCollector::SetInputTensor(
     const TRITONSERVER_MemoryType use_pinned_memory_type, const bool use_kernel,
     const bool wait_buffer)
 {
-  bool cuda_copy = false;
+  bool cuda_copy = true;
 
   if ((tensor_buffer_offset + input.memory_desc_.byte_size_) >
       tensor_buffer_byte_size) {
