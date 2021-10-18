@@ -239,6 +239,7 @@ BackendInputCollector::ProcessTensor(
         input_name, input, buffer, buffer_byte_size, memory_type,
         memory_type_id, buffer_offset, use_pinned_memory_type, use_kernel,
         true);
+    need_sync_ = true;
 
     buffer_offset += input.memory_desc_.byte_size_;
   }
