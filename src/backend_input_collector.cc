@@ -27,6 +27,8 @@
 #include "triton/backend/backend_input_collector.h"
 
 #include <atomic>
+#include <iostream>
+
 #include "triton/backend/backend_common.h"
 #ifdef TRITON_ENABLE_GPU
 #include "kernel.h"
@@ -208,6 +210,7 @@ BackendInputCollector::ProcessTensor(
       TRITONSERVER_MEMORY_CPU_PINNED;
   if (pinned_enabled_) {
     use_pinned_memory_type = GetUsePinnedMemoryType(memory_type);
+    std::cout << "USE PINNED MEMORY TYPE: " << use_pinned_memory_type;
   }
   const bool use_kernel = (kernel_buffer_threshold_ != 0);
 
