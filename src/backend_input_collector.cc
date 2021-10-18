@@ -202,6 +202,7 @@ BackendInputCollector::ProcessTensor(
     const char* input_name, char* buffer, const size_t buffer_byte_size,
     const TRITONSERVER_MemoryType memory_type, const int64_t memory_type_id)
 {
+  std::cout << "WOOOOOOOOOOOOOOOOO!!!!!!";
   // A value of CPU_PINNED indicates that pinned memory buffer is not
   // needed for this tensor. Any other value indicates that a pinned
   // memory buffer is needed when the target memory type matches
