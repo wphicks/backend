@@ -210,10 +210,10 @@ BackendInputCollector::ProcessTensor(
       TRITONSERVER_MEMORY_CPU_PINNED;
   if (pinned_enabled_) {
     use_pinned_memory_type = GetUsePinnedMemoryType(memory_type);
-    std::cout << "TRITONSERVER_MEMORY_GPU" << TRITONSERVER_MEMORY_GPU << "\n";
-    std::cout << "TRITONSERVER_MEMORY_CPU" << TRITONSERVER_MEMORY_CPU << "\n";
-    std::cout << "USE PINNED MEMORY TYPE: " << use_pinned_memory_type << "\n";
   }
+  std::cout << "TRITONSERVER_MEMORY_GPU" << TRITONSERVER_MEMORY_GPU << "\n";
+  std::cout << "TRITONSERVER_MEMORY_CPU" << TRITONSERVER_MEMORY_CPU << "\n";
+  std::cout << "USE PINNED MEMORY TYPE: " << use_pinned_memory_type << "\n";
   const bool use_kernel = (kernel_buffer_threshold_ != 0);
 
   size_t buffer_offset = 0;
